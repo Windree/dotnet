@@ -1,0 +1,12 @@
+version: "4.2"
+services:
+  #gateway
+  app:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    restart: unless-stopped
+    volumes:
+      - ./data/web:/data
+    ports:
+      - ${HTTP_PORT}:80
+      - ${HTTPS_PORT}:443
+    command: [ "bash", "-c", "dotnet dev-certs https && dotnet watch --non-interactive --project /data/DragonSoul.csproj"]
