@@ -9,7 +9,7 @@ function main() {
     while true; do
         echo "$(date) Wating for hook"
         nc -I 1 -l "$DRAGONSOUL_ART_DEPLOY_PORT" >/dev/null
-        deploy || true
+        (deploy || true) | /app/mutt/app.sh -s "Art deployed" windree@dragonsoul.com
     done
 }
 
